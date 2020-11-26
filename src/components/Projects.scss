@@ -1,0 +1,42 @@
+.container .body .projects {
+  .project {
+    margin: 4rem 0;
+
+    .project-body {
+      display: flex;
+
+      .slider-container {
+        min-width: 450px;
+        flex-grow: 1;
+
+        .slick-slider {
+          margin: 0 10px;
+
+          .img-container {
+            outline: none;
+            display: flex !important;
+            justify-content: center;
+            img {
+              max-width: 450px;
+              max-height: 300px;
+            }
+          }
+        }
+      }
+
+      .description {
+        margin: 0 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      .project-body {
+        flex-direction: column;
+
+        .description {
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+}

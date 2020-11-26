@@ -1,0 +1,39 @@
+.container .body .members {
+  .members-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .member {
+      margin: 1rem;
+      box-shadow: 4px -1px 8px 4px #ddd;
+      border-radius: 4px;
+
+      .img-container {
+        border-radius: inherit;
+        margin: 0;
+        height: 350px;
+        width: 300px;
+
+        img {
+          height: 350px;
+          width: 300px;
+          object-fit: cover;
+          border-radius: inherit;
+        }
+      }
+
+      .details {
+        .name {
+          font-size: 2rem;
+          margin: 0.5rem 0 0 0;
+        }
+        .position {
+          margin-bottom: 1.5rem;
+          color: #aaa;
+          font-size: 16px;
+        }
+        padding: 1rem;
+      }
+    }
+  }
+}
