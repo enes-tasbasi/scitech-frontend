@@ -2,16 +2,22 @@ import React from "react";
 import Slider from "react-slick";
 import { useQuery } from "@apollo/client";
 import ReactMarkdown from "react-markdown";
+import Skeleton from "react-loading-skeleton";
 
 import { PROJECTS } from "../graphql";
 
 export default function Projects() {
-  const { data } = useQuery(PROJECTS);
+  const { data, loading } = useQuery(PROJECTS);
 
   const projects = data?.projects;
 
-  const projectList =
-    projects &&
+  const projectList = loading ? (
+    <div className="project">
+      <Skeleton width={200} />
+      <div style={{ marginTop: "40px" }}></div>
+      <Skeleton count={5} />
+    </div>
+  ) : (
     projects.map((project) => (
       <div className="project" key={project.id}>
         <h3>{project.title}</h3>
@@ -19,14 +25,21 @@ export default function Projects() {
           {project.images.length > 0 && (
             <ProjectSlider images={project.images} />
           )}
-          <div className="description">{project.description}</div>
+          <div className="description">
+            <ReactMarkdown source={project.description} />
+          </div>
         </div>
       </div>
-    ));
+    ))
+  );
   return (
     <div className="projects">
       <h1 className="page-title">Projects</h1>
-      {projectList}
+      {!loading && projectList.length === 0 ? (
+        <div>No projects are listed currently, please check back later.</div>
+      ) : (
+        projectList
+      )}
     </div>
   );
 }

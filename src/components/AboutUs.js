@@ -2,23 +2,30 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
-import { ABOUT_US, ABOUT_US_IMAGES } from "../graphql";
+import Skeleton from "react-loading-skeleton";
+
+import { ABOUT_US } from "../graphql";
 
 export default function AboutUs() {
-  const { data } = useQuery(ABOUT_US);
+  const { data, loading } = useQuery(ABOUT_US);
 
   return (
     <div className="about-us">
-      <ImageSlider />
+      <ImageSlider images={data?.aboutUs?.images} />
       <h1 className="page-title">About Us</h1>
-      <ReactMarkdown source={data?.aboutUs?.Content} />
+      {loading ? (
+        <Skeleton count={5} />
+      ) : (
+        <ReactMarkdown source={data?.aboutUs?.Content} />
+      )}
+      {!loading && !data?.aboutUs?.Content && (
+        <div>Nothing here, please check back later.</div>
+      )}
     </div>
   );
 }
 
-function ImageSlider() {
-  const { data } = useQuery(ABOUT_US_IMAGES);
-
+function ImageSlider({ images }) {
   const settings = {
     dots: true,
     infinite: false,
@@ -28,13 +35,12 @@ function ImageSlider() {
     variableWidth: true,
   };
 
-  const images = data?.aboutUsImage?.images;
   return (
     <Slider {...settings}>
       {images &&
         images.map((image) => (
           <div className="img-container" key={image.id}>
-            <img src={process.env.REACT_APP_STRAPI_URL + image.url}></img>
+            <img src={process.env.REACT_APP_STRAPI_URL + image.url} />
           </div>
         ))}
     </Slider>

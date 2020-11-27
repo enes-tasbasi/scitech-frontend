@@ -9,13 +9,6 @@ export const ABOUT_US = gql`
   query {
     aboutUs {
       Content
-    }
-  }
-`;
-
-export const ABOUT_US_IMAGES = gql`
-  query {
-    aboutUsImage {
       images {
         id
         url
