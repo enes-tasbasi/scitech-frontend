@@ -6,7 +6,7 @@ import { MEMBERS } from "../graphql";
 import ProfilePlaceholder from "../assets/profile-placeholder.png";
 
 export default function Members() {
-  const { data, loading } = useQuery(MEMBERS);
+  const { data, loading, error } = useQuery(MEMBERS);
 
   const members = data?.members;
 
@@ -61,11 +61,12 @@ export default function Members() {
     <div className="members">
       <h1 className="page-title">Members</h1>
       <div className="members-container">
-        {!loading && memberList.length === 0 ? (
+        {!loading && Array.isArray(memberList) && memberList.length === 0 ? (
           <div>No members are listed, please check back later.</div>
         ) : (
           memberList
         )}
+        {error && <div>Something went wrong: {error}</div>}
       </div>
     </div>
   );
