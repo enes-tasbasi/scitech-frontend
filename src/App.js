@@ -22,6 +22,7 @@ import Projects from "./components/Projects";
 import Members from "./components/Members";
 import ContactUs from "./components/ContactUs";
 import NotFoundPage from "./components/NotFoundPage";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
@@ -77,13 +78,15 @@ function App() {
 function Routes() {
   return (
     <div className="body">
-      <Switch>
-        <Route exact path="/" component={AboutUs} />
-        <Route exact path="/projects" component={Projects} />
-        <Route exact path="/members" component={Members} />
-        <Route exact path="/contact" component={ContactUs} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <ErrorBoundary>
+        <Switch>
+          <Route exact path="/" component={AboutUs} />
+          <Route exact path="/projects" component={Projects} />
+          <Route exact path="/members" component={Members} />
+          <Route exact path="/contact" component={ContactUs} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </ErrorBoundary>
     </div>
   );
 }

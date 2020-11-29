@@ -1,4 +1,4 @@
-import React from "react";
+Aimport React from "react";
 import { useQuery } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
 
@@ -10,6 +10,7 @@ export default function Members() {
 
   const members = data?.members;
 
+  
   const memberList = loading
     ? new Array(3).fill(
         <div className="member">
@@ -35,11 +36,7 @@ export default function Members() {
         <div key={member.id} className="member">
           <div className="img-container">
             <img
-              src={
-                member.image
-                  ? process.env.REACT_APP_STRAPI_URL + member.image.url
-                  : ProfilePlaceholder
-              }
+              src={member.image ? member.image.url : ProfilePlaceholder}
               alt="member picture"
             />
           </div>
