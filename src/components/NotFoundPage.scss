@@ -1,0 +1,18 @@
+.container .body {
+  overflow: hidden;
+  .not-found-page {
+    position: relative;
+
+    svg {
+      font-size: 30rem;
+      color: $bg-dark;
+      position: absolute;
+      opacity: 0.5;
+      right: 0;
+      transform: rotate(30deg);
+    }
+    > div {
+      font-size: 4rem;
+    }
+  }
+}

@@ -21,6 +21,7 @@ import AboutUs from "./components/AboutUs";
 import Projects from "./components/Projects";
 import Members from "./components/Members";
 import ContactUs from "./components/ContactUs";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function Routes() {
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/members" component={Members} />
         <Route exact path="/contact" component={ContactUs} />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
