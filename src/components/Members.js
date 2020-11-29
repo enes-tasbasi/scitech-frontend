@@ -1,4 +1,4 @@
-Aimport React from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
 
@@ -10,7 +10,6 @@ export default function Members() {
 
   const members = data?.members;
 
-  
   const memberList = loading
     ? new Array(3).fill(
         <div className="member">
