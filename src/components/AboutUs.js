@@ -40,7 +40,7 @@ function ImageSlider({ images }) {
       {images &&
         images.map((image) => (
           <div className="img-container" key={image.id}>
-            <img src={process.env.REACT_APP_STRAPI_URL + image.url} />
+            <img src={image.url} />
           </div>
         ))}
     </Slider>
